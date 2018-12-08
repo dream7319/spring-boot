@@ -352,7 +352,7 @@ class JarFileEntries implements CentralDirectoryVisitor, Iterable<JarEntry> {
 		return (this.filter != null) ? this.filter.apply(name) : name;
 	}
 
-	/**
+	/*
 	 * Iterator for contained entries.
 	 */
 	private class EntryIterator implements Iterator<JarEntry> {
