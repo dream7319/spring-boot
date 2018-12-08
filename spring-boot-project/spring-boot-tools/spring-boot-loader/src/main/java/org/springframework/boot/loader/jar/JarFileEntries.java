@@ -56,11 +56,10 @@ class JarFileEntries implements CentralDirectoryVisitor, Iterable<JarEntry> {
 	private static final int RUNTIME_VERSION;
 
 	static {
-		int version;
+		Integer version;
 		try {
 			Object runtimeVersion = Runtime.class.getMethod("version").invoke(null);
-			version = (int) runtimeVersion.getClass().getMethod("major")
-					.invoke(runtimeVersion);
+			version = (Integer) runtimeVersion.getClass().getMethod("major").invoke(runtimeVersion);
 		}
 		catch (Throwable ex) {
 			version = 8;
@@ -114,7 +113,6 @@ class JarFileEntries implements CentralDirectoryVisitor, Iterable<JarEntry> {
 		}
 	}
 
-	@Override
 	public void visitStart(CentralDirectoryEndRecord endRecord,
 			RandomAccessData centralDirectoryData) {
 		int maxSize = endRecord.getNumberOfRecords();
@@ -124,7 +122,6 @@ class JarFileEntries implements CentralDirectoryVisitor, Iterable<JarEntry> {
 		this.positions = new int[maxSize];
 	}
 
-	@Override
 	public void visitFileHeader(CentralDirectoryFileHeader fileHeader, int dataOffset) {
 		AsciiBytes name = applyFilter(fileHeader.getName());
 		if (name != null) {
@@ -139,7 +136,6 @@ class JarFileEntries implements CentralDirectoryVisitor, Iterable<JarEntry> {
 		this.size++;
 	}
 
-	@Override
 	public void visitEnd() {
 		sort(0, this.size - 1);
 		int[] positions = this.positions;
@@ -193,7 +189,6 @@ class JarFileEntries implements CentralDirectoryVisitor, Iterable<JarEntry> {
 		array[j] = temp;
 	}
 
-	@Override
 	public Iterator<JarEntry> iterator() {
 		return new EntryIterator();
 	}
@@ -364,12 +359,10 @@ class JarFileEntries implements CentralDirectoryVisitor, Iterable<JarEntry> {
 
 		private int index = 0;
 
-		@Override
 		public boolean hasNext() {
 			return this.index < JarFileEntries.this.size;
 		}
 
-		@Override
 		public JarEntry next() {
 			if (!hasNext()) {
 				throw new NoSuchElementException();

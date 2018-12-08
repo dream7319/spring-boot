@@ -127,9 +127,9 @@
 			</pluginRepositories>
 		</profile>
 	</profiles>
-	<repositories>
-		<!-- Repositories to allow snapshot and milestone BOM imports during development.
-			This section is stripped by the flatten plugin during install/deploy. -->
+	<!--<repositories>
+		&lt;!&ndash; Repositories to allow snapshot and milestone BOM imports during development.
+			This section is stripped by the flatten plugin during install/deploy. &ndash;&gt;
 		<repository>
 			<id>central</id>
 			<url>https://repo.maven.apache.org/maven2</url>
@@ -161,8 +161,8 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
-	</repositories>
-	<pluginRepositories>
+	</repositories>-->
+	<!--<pluginRepositories>
 		<pluginRepository>
 			<id>central</id>
 			<url>https://repo.maven.apache.org/maven2</url>
@@ -186,7 +186,7 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</pluginRepository>
-	</pluginRepositories>
+	</pluginRepositories>-->
 	<build>
 		<pluginManagement>
 			<plugins>
